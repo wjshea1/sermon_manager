@@ -1,0 +1,37 @@
+<%= form_for(@book) do |f| %>
+  <% if @book.errors.any? %>
+        <div id="error_explanation" xmlns="http://www.w3.org/1999/html">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %><br/>
+      <%= f.label :testament %><br />
+      <%= label_tag(:testament, 'Old') %>
+      <%= radio_button_tag(:testament, 'testament') %>
+      <%= label_tag(:testament, 'New') %>
+      <%= radio_button_tag(:testament, 'testament') %>   <br />
+
+
+      <%= f.label :chapter_count %><br />
+      <%= f.text_field :chapter_count %><br />
+
+
+
+
+
+
+
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @speaker.name %>
+</p>
+<p>
+  <b>Is Guest:</b>
+  <%= @speaker.guest? %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_speaker_path(@speaker) %> |
+<%= link_to 'Back', speakers_path %>

@@ -2,7 +2,7 @@ class SermonsController < ApplicationController
   # GET /sermons
   # GET /sermons.json
   def index
-    @sermons = Sermon.all
+    @sermons = Sermon.all(:order=> 'book_id', :include => [:speaker])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -35,13 +35,16 @@ class SermonsController < ApplicationController
   # GET /sermons/1/edit
   def edit
     @sermon = Sermon.find(params[:id])
+    @books = Book.all
+
+
   end
 
   # POST /sermons
   # POST /sermons.json
   def create
     @sermon = Sermon.new(params[:sermon])
-
+    @books = Book.all
     respond_to do |format|
       if @sermon.save
         format.html { redirect_to @sermon, :notice => 'Sermon was successfully created.' }
@@ -57,7 +60,7 @@ class SermonsController < ApplicationController
   # PUT /sermons/1.json
   def update
     @sermon = Sermon.find(params[:id])
-
+    @books = Book.all
     respond_to do |format|
       if @sermon.update_attributes(params[:sermon])
         format.html { redirect_to @sermon, :notice => 'Sermon was successfully updated.' }

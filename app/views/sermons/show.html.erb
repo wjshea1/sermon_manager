@@ -1,24 +1,27 @@
 <p id="notice"><%= notice %></p>
 
+<span align="center">
 <p>
   <b>Title:</b>
   <%= @sermon.title %>
+</p>
+<p>
+
+  <%= image_tag(@sermon.image_url) %>
+</p>
+<p>
+  <%= audio_tag(@sermon.audio_url, :controls=>true , :autoplay => false, :autoload => false)
+  %>
 </p>
 
 <p>
   <b>Description:</b>
   <%= @sermon.description %>
 </p>
+</span>
 
-<p>
-  <b>Image url:</b>
-  <%= @sermon.image_url %>
-</p>
 
-<p>
-  <b>Audio url:</b>
-  <%= @sermon.audio_url %>
-</p>
+
 
 
 <%= link_to 'Edit', edit_sermon_path(@sermon) %> |

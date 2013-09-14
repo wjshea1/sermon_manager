@@ -1,29 +1,26 @@
-<h1>Listing sermons</h1>
+<h1>Sermons</h1>
 
-<table>
+<table class="table table-hover" data-provides="rowlink">
+
   <tr>
+    <th>Image</th>
     <th>Title</th>
     <th>Description</th>
 	<th>Speaker</th>
-	<th>Keywords</th>
-    <th>Image url</th>
-    <th>Audio url</th>
+    <th>Actions</th>
     <th></th>
-    <th></th>
-    <th></th>
+
   </tr>
 
 <% @sermons.each do |sermon| %>
   <tr class="<% cycle('list_line_odd', 'list_line_even') %>">
-    <td><%= sermon.title %></td>
-    <td class="list_description"><%= sermon.description %></td>
-    <td><%= sermon.speaker %></td>
-    <td><%= sermon.keywords %></td>
-    <td><%= sermon.image_url %></td>
-    <td><%= sermon.audio_url %></td>
-    <td><%= link_to 'Show', sermon %></td>
-    <td><%= link_to 'Edit', edit_sermon_path(sermon) %></td>
-    <td><%= link_to 'Destroy', sermon, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to(  image_tag(sermon.image_url), sermon)  %></td>
+    <td class="sermon_title_index"><%= sermon.title %></td>
+    <td class="list_description"><%= truncate(sermon.description, :length=>80) %></td>
+    <td> <%= link_to sermon.speaker.name, sermon.speaker %></td>
+
+    <td><%= link_to content_tag(:i, "", :class=>"icon-edit icon-large"), edit_sermon_path(sermon), :class=>'btn btn-mini' %></td>
+    <td><%= link_to content_tag(:i, "", :class=>"icon-cut icon-large"), sermon, :confirm => 'Are you sure?', :method => :delete, :class=>'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
 </table>
