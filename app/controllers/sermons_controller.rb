@@ -2,11 +2,13 @@ class SermonsController < ApplicationController
   # GET /sermons
   # GET /sermons.json
   def index
-    @sermons = Sermon.all(:order=> 'book_id', :include => [:speaker])
+    @sermons = Sermon.all(:order=> 'publish_date', :include => [:speaker]).reverse
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @sermons }
+      format.rss { render :layout => false} #index.rss.builder
+
     end
   end
 
@@ -18,6 +20,7 @@ class SermonsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @sermon }
+      format.rss { render rss}
     end
   end
 
@@ -25,6 +28,8 @@ class SermonsController < ApplicationController
   # GET /sermons/new.json
   def new
     @sermon = Sermon.new
+    @books = Book.all
+    @speakers = Speaker.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +41,7 @@ class SermonsController < ApplicationController
   def edit
     @sermon = Sermon.find(params[:id])
     @books = Book.all
+    @speakers = Speaker.all
 
 
   end
@@ -61,6 +67,7 @@ class SermonsController < ApplicationController
   def update
     @sermon = Sermon.find(params[:id])
     @books = Book.all
+    @speakers = Speaker.all
     respond_to do |format|
       if @sermon.update_attributes(params[:sermon])
         format.html { redirect_to @sermon, :notice => 'Sermon was successfully updated.' }
@@ -81,6 +88,22 @@ class SermonsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to sermons_url }
       format.json { head :no_content }
+
     end
+  end
+
+  def rss
+    # This code should be moved to a model
+
+    rss = RSS::Maker.make("2.0") do |maker|
+      maker.channel.author = "Calvary Chapel of Mercer County"
+      maker.channel.updated = Time.now.to_s
+      maker.channel.about = "http://www.ccmc.org/en/feeds/news/rss"
+      maker.channel.title = "Calvary Chapel Mercer County Podcast"
+
+
+    end
+
+    rss
   end
 end

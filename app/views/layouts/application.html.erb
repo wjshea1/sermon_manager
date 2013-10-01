@@ -2,30 +2,33 @@
 <html>
 <head>
   <title>Sermon Manager</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="#">Calvary Chapel Mercer County</a>
-      <div class="nav-collapse">
-        <ul class="nav">
-          <li><%= link_to "Sermons", sermons_path %></li>
-          <li><%= link_to "Speakers", speakers_path %></li>
-          <li><%= link_to "Contact Us" %></li>
-
-        </ul>
-      </div>
-    </div>
+<div class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">CCMC</a>
   </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class = "nav navbar-nav">
+      <li><%= link_to "Sermons", sermons_path %></li>
+      <li><%= link_to "Speakers", speakers_path %></li>
+      <li><%= link_to "Contact Us" %></li>
+    </ul>
+
+  </div>
+
+
+
 </div>
  <div class="container">
    <div class="span9">
@@ -34,6 +37,7 @@
  </div>
 
 
+<!-- Latest compiled and minified JavaScript -->
 
 
 

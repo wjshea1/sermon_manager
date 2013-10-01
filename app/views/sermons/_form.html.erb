@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :speaker %><br />
-    <%= f.text_field :speaker %>
+    <%= collection_select(:speaker,:id, @speakers, :id, :name, {:selected => @sermon.speaker_id})    %>
   </div>
   <div class="field">
     <%= f.label :keywords %><br />
@@ -35,10 +35,21 @@
     <%= f.label :audio_url %><br />
     <%= f.text_field :audio_url %>
   </div>
-  <div>
+  <div class="field">
+   <%= f.label :book %>
    <%= collection_select(:book,:id, @books, :id, :name, {:selected => @sermon.book_id})    %>
   </div>
-  <div class="actions">
+  <div class="field">
+    <%= f.label :start_verse %>
+    <%= f.text_field :start_verse %>
+  </div>
+    <div class="field">
+      <%= f.label :end_verse %>
+      <%= f.text_field :end_verse %>
+    </div>
+
+
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

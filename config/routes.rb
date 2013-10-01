@@ -1,5 +1,8 @@
 SermonManager::Application.routes.draw do
   resources :sermons
+  resources :books
+  resources :speakers
+  root :to => 'sermons#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

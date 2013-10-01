@@ -1,3 +1,6 @@
+
+
+
 class Sermon < ActiveRecord::Base
 
 

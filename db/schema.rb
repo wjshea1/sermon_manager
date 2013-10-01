@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,17 +11,66 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130826002749) do
+ActiveRecord::Schema.define(:version => 20130917014133) do
+
+  create_table "books", :force => true do |t|
+    t.string   "name"
+    t.string   "testament"
+    t.integer  "chapter_count"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "sermon_old", :force => true do |t|
+    t.integer  "version",             :limit => 8,          :null => false
+    t.string   "audio_file_location",                       :null => false
+    t.integer  "book_id",             :limit => 8
+    t.string   "duration",                                  :null => false
+    t.integer  "end_verse",                                 :null => false
+    t.string   "image_file_location",                       :null => false
+    t.string   "keywords",            :limit => 250,        :null => false
+    t.datetime "pub_date",                                  :null => false
+    t.string   "service",             :limit => 9,          :null => false
+    t.integer  "start_verse",                               :null => false
+    t.text     "summary",             :limit => 2147483647, :null => false
+    t.string   "title",               :limit => 200,        :null => false
+    t.string   "audio_file",                                :null => false
+    t.string   "book",                                      :null => false
+    t.integer  "chapter",                                   :null => false
+    t.string   "description",                               :null => false
+    t.string   "explicit",            :limit => 3,          :null => false
+    t.string   "image_location",                            :null => false
+    t.string   "sub_title",                                 :null => false
+    t.integer  "end_chapter",                               :null => false
+    t.binary   "featured",            :limit => 1,          :null => false
+    t.integer  "speaker_id",          :limit => 8
+    t.integer  "start_chapter",                             :null => false
+  end
 
   create_table "sermons", :force => true do |t|
-    t.text     "title"
+    t.string   "title"
     t.text     "description"
     t.string   "image_url"
     t.string   "audio_url"
-    t.string   "speaker"
     t.text     "keywords"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "speaker_id"
+    t.integer  "book_id"
+    t.boolean  "featured"
+    t.integer  "start_chapter"
+    t.integer  "end_chapter"
+    t.integer  "start_verse"
+    t.integer  "end_verse"
+    t.string   "service"
+    t.datetime "publish_date"
+  end
+
+  create_table "speakers", :force => true do |t|
+    t.string   "name"
+    t.boolean  "guest"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
