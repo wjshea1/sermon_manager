@@ -22,7 +22,8 @@ group :assets do
       :github => 'anjlab/bootstrap-rails'
 
 end
-
+#heroku
+gem 'rails_12factor', group: :production
 gem 'jquery-rails'
 
 gem 'rails_12factor', group: :production
